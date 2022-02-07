@@ -6,36 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <title>A todo app with not step-by-by step tutorial</title>
+    <style>
+      input[type="checkbox"]:checked + label {
+        text-decoration: line-through;
+      }
+     
+      .delete {
+        border-radius: 5px;
+       float: right;
+      margin-top: -5px;
+      margin-left: 10px;
+       
+        
+      }
+    .max-width {
+        max-width: max-content;
+        margin: 0 auto;
+    }
+    </style>
   </head>
   <body>
-    <section>
+    <section class="w3-container w3-center">
       <h1>Sam's Todo</h1>
       <label for="add-todo">Add your task here</label>
       <input type="text" id="add-todo" />
       <button role="button" id="add-item">Submit</button>
     </section>
 
-    <section>
-      <h2>Here is your todo list</h2>
+    <section class="w3-container ">
+      <h2 class="w3-center">Here is your todo list</h2>
       <div class="todo-items">
-        <ul class="w3-ul w3-card-4"></ul>
+        <ul class="w3-ul w3-card-4 max-width"></ul>
       </div>
     </section>
 
     <script>
       const addTodo = document.querySelector("#add-todo");
       const addButton = document.querySelector("#add-item");
-      const list = document.querySelector('.todo-items ul');
-      
-      
-function addTodoToList () {
-    console.log('click');
-    list.innerHTML += `<li> <input type="checkbox" id="${addTodo.value}" name="${addTodo.value}" ${addTodo.value}">
-  <label for="vehicle1"> ${addTodo.value}</label></li>`
-}
+      const list = document.querySelector(".todo-items ul");
 
-addButton.addEventListener('click', addTodoToList);
+      list.addEventListener("click", (e) => {
+        if (e.target.classList.contains("delete")) {
+          const li = document.querySelector("li");
+          li.remove();
+        } else {
+          console.log(false);
+        }
+      });
 
+      function addTodoToList() {
+        list.innerHTML += `<li > <input type="checkbox" id="${addTodo.value}" name="${addTodo.value}" ${addTodo.value}">
+  <label for="vehicle1"> ${addTodo.value}</label><button role="button"class="delete w3-button w3-red w3-padding-small">X</button></li>`;
+      }
+
+      addButton.addEventListener("click", addTodoToList);
     </script>
   </body>
 </html>
